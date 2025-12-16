@@ -1,0 +1,23 @@
+# 1. Use an official Node.js runtime as a parent image
+# 'alpine' is a lightweight Linux distribution to keep the image size small
+FROM node:20-alpine
+
+# 2. Set the working directory inside the container
+WORKDIR /usr/src/app
+
+# 3. Copy package.json and package-lock.json first
+# This allows Docker to cache your dependencies if these files haven't changed
+COPY package*.json ./
+
+# 4. Install dependencies
+# 'npm ci' is preferred for automated environments as it's faster and more reliable
+RUN npm ci --only=production
+
+# 5. Copy the rest of your application code
+COPY . .
+
+# 6. Expose the port your app runs on
+EXPOSE 3000
+
+# 7. Define the command to run your app
+CMD ["node", "index.js"]

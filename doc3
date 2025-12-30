@@ -1,0 +1,7 @@
+pwd & mkdir static: You checked your current directory and created a folder named static.
+
+git clone ...: You successfully pulled down the website templates.
+
+ls -ltr: You verified the contents of the directory.  
+docker run -dit -v d:/static/html-website-templates/html:/usr/share/nginx/html -p8082:80 nginx   : You are attempting to map 
+a local Windows path (d:/static/...) to the container.
